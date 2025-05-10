@@ -27,8 +27,8 @@ function _update()
 
 	-- hour hand
 	hour = {
-	x = 64 + -sin(stat(93)/24) * r/2,
-	y = 64 + -cos(stat(93)/24) * r/2
+	x = 64 + -sin(stat(93)/12) * r/2,
+	y = 64 + -cos(stat(93)/12) * r/2
 }
 
 
@@ -38,7 +38,26 @@ function _update()
 	else
 		delimiter = " "
 	end
-	time = stat(93)..delimiter..stat(94)..delimiter..stat(95)
+
+	if stat(93) < 10 then
+		hr = "0"..stat(93)
+	else
+		hr = stat(93)
+	end
+
+	if stat(94) < 10 then
+		min = "0"..stat(94)
+	else
+		min = stat(94)
+	end
+
+	if stat(95) < 10 then
+		sec = "0"..stat(95)
+	else
+		sec = stat(95)
+	end
+
+	time = hr..delimiter..min..delimiter..sec
 end
 
 function _draw()
