@@ -34,12 +34,17 @@ function _update()
 	if rnd() > 0.5 and party then
 		clr = rndcolor()
 	end
-	if btn('❎') and party == false then 
+	if btnp('4') and party == false then 
 		party = true 
-	else if btn('❎') and party == true then 
+	else if btnp('4') and party == true then 
 		party = false 
 	end
 	end
+
+	-- if btn('1') then
+	-- 	angle_v *= 1.01
+	-- 	angle += .01
+	-- end
 end
 
 function _draw()
@@ -51,6 +56,7 @@ function _draw()
 	print("y: "..bob['y'], 7)
 	-- print(party,7)
 	print('press ❎ to party!', 0, 120, 7)
+	-- print('press ➡️ to push!', 0, 110, 7)
 end
 
 

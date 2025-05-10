@@ -5,39 +5,63 @@ function rndcolor()
 	 return flr(rnd(16))
 end
 
-current = flr(rnd(16))
+function _init()
+	current = flr(rnd(16))
+	bg = 0
+	r = 50
+end
 
-bg = 0
+function _update()
 
-r = 50
+	-- second hand
+	second = {
+		x = 64 + -sin(stat(95)/60) * r,
+		y = 64 + -cos(stat(95)/60) * r
+	}
+
+	-- minute hand
+	minute = {
+		x = 64 + -sin(stat(94)/60) * r/1.15,
+		y = 64 + -cos(stat(94)/60) * r/1.15
+	}
+
+	-- hour hand
+	hour = {
+	x = 64 + -sin(stat(93)/24) * r/2,
+	y = 64 + -cos(stat(93)/24) * r/2
+}
+
+
+	
+	if sin(t()) > -0.75 then
+		delimiter = ":"
+	else
+		delimiter = " "
+	end
+	time = stat(93)..delimiter..stat(94)..delimiter..stat(95)
+end
 
 function _draw()
-	cls()
-	circfill(64, 64, r, current)
-
-	if rnd(1) > 0.80 then
+	if rnd() > 0.95 then
 		current = rndcolor()
 	end
+ local lcolor = current + 4
 
+	cls()
+	circfill(64, 64, r, current)
 	if current == 0 then
-		circ(64,64,r,rndcolor())
+		circ(64,64,r,lcolor + 1)
 	end
 
-	xa = 64 + sin(t()/3600) * r
-	ya = 64 + cos(t()/3600) * r
 
-	xb = 64 + sin(t()/60) * r/2
-	yb = 64 + cos(t()/60) * r/2
+	line(64,64, second['x'], second['y'], lcolor + 2)
 
-	local lcolor = rndcolor()
-	line(64, 64, xa, ya, lcolor)
+	line(64, 64, minute['x'], minute['y'], lcolor)
 
-	line(64, 64, xb, yb, lcolor)
+	line(64, 64, hour['x'], hour['y'], lcolor)
 
-	print("hey look a clock", 7)
-	
-	time = stat(93)..":"..stat(94)..":"..stat(95)
-	print(time.." (not accurate)",0,120,7)
+	print("hey look a clock",32,0, 7)
+	print(time,0,120,7)
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
