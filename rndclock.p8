@@ -61,7 +61,7 @@ function _update()
 end
 
 function _draw()
-	if rnd() > 0.95 then
+	if rnd() > 0.98 then
 		current = rndcolor()
 	end
  local lcolor = current + 4
@@ -72,12 +72,18 @@ function _draw()
 		circ(64,64,r,lcolor + 1)
 	end
 
-
 	line(64,64, second['x'], second['y'], lcolor + 2)
+
+	print("12", 61, 15, lcolor + 6)
+	print("3", 111, 62, lcolor + 6)
+	print("6", 63, 109, lcolor + 6)
+	print("9", 15, 62, lcolor + 6)
+
 
 	line(64, 64, minute['x'], minute['y'], lcolor)
 
 	line(64, 64, hour['x'], hour['y'], lcolor)
+
 
 	print("hey look a clock",32,0, 7)
 	print(time,0,120,7)
