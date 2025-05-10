@@ -34,9 +34,9 @@ function _update()
 
 	
 	if sin(t()) > -0.75 then
-		delimiter = ":"
+		time_delimiter = ":"
 	else
-		delimiter = " "
+		time_delimiter = " "
 	end
 
 	if stat(93) < 10 then
@@ -57,8 +57,31 @@ function _update()
 		sec = stat(95)
 	end
 
-	time = hr..delimiter..min..delimiter..sec
+	time = hr..time_delimiter..min..time_delimiter..sec
+
+	yr = stat(90)
+
+	if stat(91) < 10 then
+		mnth = "0"..stat(91)
+	else
+		mnth = stat(91)
+	end
+
+	if stat(92) < 10 then
+		day = "0"..stat(92)
+	else
+		day = stat(92)
+	end
+	if sin(t()) > -0.75 then
+		date_delimiter = ":"
+	else
+		date_delimiter = " "
+	end
+	
+	date_delimiter = "/"
+	today = yr..date_delimiter..mnth..date_delimiter..day
 end
+
 
 function _draw()
 	if rnd() > 0.98 then
@@ -74,10 +97,10 @@ function _draw()
 
 	line(64,64, second['x'], second['y'], lcolor + 2)
 
-	print("12", 61, 15, lcolor + 6)
-	print("3", 111, 62, lcolor + 6)
-	print("6", 63, 109, lcolor + 6)
-	print("9", 15, 62, lcolor + 6)
+	print("12", 61, 15, lcolor)
+	print("3", 111, 62, lcolor)
+	print("6", 63, 109, lcolor)
+	print("9", 15, 62, lcolor)
 
 
 	line(64, 64, minute['x'], minute['y'], lcolor)
@@ -87,6 +110,8 @@ function _draw()
 
 	print("hey look a clock",32,0, 7)
 	print(time,0,120,7)
+	print(today,86,120,7)
+	
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
