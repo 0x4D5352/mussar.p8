@@ -7,8 +7,13 @@ function _init()
 end
 
 function _update()
+	if(btn(6)) poke(0x5f30,1)
 	if stat(30) then
-		add(string,stat(31))
+		if stat(31) == "\b" then
+			deli(string)
+		else
+			add(string,stat(31))
+		end
 	end
 end
 
@@ -27,6 +32,9 @@ function _draw()
 	if #string>=1 then
 		for i=1,#string,1 do
 			res = res..string[i]
+			if i>0 and i%32==0 then
+				res = res.."\n"
+			end
 		end
 	end
 	print(res,0,64,7)
