@@ -26,14 +26,29 @@ __lua__
 
 -- sideways boxes
 --fillp(0b1011100101100011)
+
+-- like a c or smth
+--fillp(0b1101011010110100)
+
+-- ??
+--fillp(0b0110101101111111)
+
+--fillp(0b0000000000000000)
+--fillp(0b1101101100111111)
 --  16    1234567812345678
 i = 0
+max = 65535
 function _draw()
-	if t()%0.5==0 then i+= 1 end
-	if i == 256 then i = 0 end
+	--if t()%1==0 then i+= 1 end
+	--i+=0.25
+	--if i == 256 then i = 0 end
+ --i=256
+ i += 1
  cls()
- circfill(64,64,64, i)
- print(i,7)
+ fillp(i)
+ circfill(64,64,64, 7)
+ print(flr(i),7)
+	if i == max then i = 0 end
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
