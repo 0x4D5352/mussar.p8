@@ -3,44 +3,47 @@ version 42
 __lua__
 --globals
 function _init()
-	a=4
+	a=1
 	r = 64
 	frequency = r
-	scalar = r/a
 	vertical = r / 1
 	horizontal = r * 0.0125
 	turbidity = 0
 	-- offset = 128 - r
 	offset = 0
-	g = flr(rnd(16))
+	-- g = flr(rnd(16))
+	g = 10
 end
 
-function fourier(n,c)
-	--local f_color = flr(rnd(15))+1
-	local phase = sin(t())
-	for y = -(r/2),(r/2),vertical do
-		cls(g+7)
-		--local y_color = flr(rnd(15))+1	
-		for x = -r,r,horizontal do
-			--local x_color = flr(rnd(15))+1
-			local sum = 0
-			local noise = rnd() * turbidity
-			for i = 0, n do
-				--local i_color = flr(rnd(15))+1
-				if (rnd() >= 0.5) noise *= -1
-				local val = (sin((i*x)/frequency-t())/i)*scalar
-				sum += val
-			end
-			local x_pos = (r + x + noise)
-			local y_pos = (r/2)+y-sum+noise
-			pset(x_pos, y_pos, c)
-		end
+function fourier(n,x,y)
+	--local x_color = flr(rnd(15))+1
+	local sum = 0
+	local noise = rnd() * turbidity
+	for i = 0, n do
+		--local i_color = flr(rnd(15))+1
+		if (rnd() >= 0.5) noise *= -1
+		local val = (sin((i*x)/frequency-t())/i)*y/2
+		sum += val
 	end
+	local x_pos = (r + x + noise)
+	local y_pos = (r/2)+y-sum+noise
+	return {x=x_pos,y=y_pos}
 end
 
 function _draw()
 	-- local c = flr(rnd(15))+1
-	fourier(a,g)
+	--local f_color = flr(rnd(15))+1
+	if t()%2 == 0 then a += 1 end
+	if a >= 20 then a = 1 end
+	for y = -(r/2),(r/2),vertical do
+		cls(g+7)
+		print(a)
+		--local y_color = flr(rnd(15))+1	
+		for x = -r,r,horizontal do
+			local res = fourier(a,x,y)
+			pset(res['x'], res['y'], g)
+		end
+	end
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
