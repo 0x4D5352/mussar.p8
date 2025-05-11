@@ -5,37 +5,43 @@ __lua__
 -- z = cos(distance/amplitude-t())*scalar
 --globals
 function _init()
-	a=1
-	r = 10
-	amplitude = 1
-	scalar = 64
-	vertical = 10
-	horizontal = 2
+	a=4
+	r = 64
+	frequency = r
+	scalar = r/a
+	vertical = r / 1
+	horizontal = r * 0.0125
 	turbidity = 0
-	offset = 64 - r
-	g = flr(rnd(15))+1
+	-- offset = 128 - r
+	offset = 0
+	g = flr(rnd(16))
 end
 
 function fourier(n,c)
 	--local f_color = flr(rnd(15))+1
-	for y = -r,r,vertical do
+	local phase = sin(t())
+	for y = -(r/2),(r/2),vertical do
+		cls(g+7)
 		--local y_color = flr(rnd(15))+1	
 		for x = -r,r,horizontal do
 			--local x_color = flr(rnd(15))+1
+			local sum = 0
+			local noise = rnd() * turbidity
 			for i = 0, n do
 				--local i_color = flr(rnd(15))+1
-				local noise = rnd() * turbidity
 				if (rnd() >= 0.5) noise *= -1
-				local val = (sin((i*x)/amplitude-t())/i)*scalar
-				pset(r+x+noise+offset, r+y-val+noise+offset, c)
+				local val = (sin((i*x)/frequency-t())/i)*scalar
+				sum += val
 			end
+			local x_pos = (r + x + noise)
+			local y_pos = (r/2)+y-sum+noise
+			pset(x_pos, y_pos, c)
 		end
 	end
 end
 
 function _draw()
-	cls()
-	--local c = flr(rnd(15))+1
+	-- local c = flr(rnd(15))+1
 	fourier(a,g)
 end
 __gfx__
