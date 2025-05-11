@@ -1,8 +1,6 @@
 pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
--- pset(r+x,r+y-n,6)
--- z = cos(distance/amplitude-t())*scalar
 --globals
 function _init()
 	a=4
