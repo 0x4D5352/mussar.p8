@@ -2,16 +2,20 @@ pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
 function _init()
-	--draw=0x5f00
- --allclrs:0x5fo7
- --bgcolor:0x5f10
- --fgcolor:0x5f17
- --scroll<:0x5f28
- --nolight:0x5f29 - 0 or 1 ?
- --scroll^:0x5f2a
- --nolight:0x5f2b - 0 or 1?
- --mir/scl:0x5f2c - 0 thru 8?
- draw=0x5f2d
+	--draw_spc:0x5f00
+ --blk_swap:0x5f00 - only fg
+ --...repeat thru 0x5f0f
+ --blk_swap:0x5f10 - cls and fg
+ --...repeat thru 0x5f1f
+ --scroll⬅️:0x5f28
+ --no_light:0x5f29 - 0 or 1 ?
+ --scroll⬆️:0x5f2a
+ --no_light:0x5f2b - 0 or 1?
+ --mir/scrl:0x5f2c - 0 thru 8?
+ --f_tiling:0x5f31
+ --f_tiling:0x5f32
+ --new_line:0x5f36 - on/off/wrap(@highvalues)
+ draw=0x5f2c
 	hardware=0x5f40
 	pokeval=0
 	pokemax=0xff
@@ -22,7 +26,7 @@ end
 function _update()
 	now=t()
 	local dt=now-last
-	if dt > 1.25 then
+	if dt > 0.25 then
 		pokeval+=1
 		if pokeval > pokemax then
 			pokeval = 0
@@ -40,6 +44,8 @@ end
 
 function _draw()
 	cls(0)
+	rectfill(24,24,104,104,7)
+	rectfill(25,25,103,103,1)
 	for y=30,98,2 do
 		for x=30,98,2 do
 			local c=flr(rnd(16))+1
@@ -47,9 +53,12 @@ function _draw()
 		end
 	end
 	circfill(64,64,32,7)
-	print("current mem: "..tostr(draw,0x1))
+	circ(64,64,32,0)
+	print("current mem: "..tostr(draw,0x1),7)
 	print("poke val: "..tostr(pokeval,0x1))
-
+	print("foobar!")
+	print("hello",0,106)
+	print("olleh")
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
