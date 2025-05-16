@@ -8,19 +8,20 @@ end
 function _update()
 	now = t()
 	deltatime = now - last
-	if deltatime >= 0.15 then
-		clr = flr(rnd(16))+1
+	if deltatime >= 0.25 then
+		clr = flr(rnd(16))+1 
 		last = now
 	end
 end
 
 function _draw()
 	cls()
-	for y=10,117,4 do
-		for x=10,117,4 do
+	for y=10,117,2 do
+		for x=10,117,2 do
 			local y2 = y / 2 
-			local x2 = x / 2
-			line(x,y,x+y2,y2,clr+y/4)
+			line(x,y,x+y2,y2,y*x/clr)
+			--circfill(x,y,(x/y)+1,y*clr/x)
+			--pset(x,y,x*y/clr)
 		end
 	end
 	--     x1 y1 x2 y2
