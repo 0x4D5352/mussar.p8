@@ -16,12 +16,15 @@ end
 
 function _draw()
 	cls()
-	for y=10,117,2 do
-		for x=10,117,2 do
+	local step = 1.05
+	local start = 10
+	local finish = 114
+	for y=start,finish,step do
+		for x=start,finish,step do
 			local y2 = y / 2 
-			line(x,y,x+y2,y2,y*x/clr)
+			--line(x,y,x+y2,y2,y*x/clr)
 			--circfill(x,y,(x/y)+1,y*clr/x)
-			--pset(x,y,x*y/clr)
+			pset(x,y,x*y/clr)
 		end
 	end
 	--     x1 y1 x2 y2
