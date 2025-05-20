@@ -1,17 +1,13 @@
 pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
-function _init()
 	-- rules
 	-- 1. a cell exists in n states
-	n = 15
-	healthy = 0
 	-- at n, a cell becomes healthy
 	-- if cell >0 & <n, cell =
 		-- avg(neighbor) + g
 		-- where g is a constant for
 		-- the infection rate
-	g = 1
 	-- if a cell is healthy, it
 		-- becomes the average of
 		-- the number of infected
@@ -24,6 +20,10 @@ function _init()
 			-- a = (10 + 5 + 60 + 30) / 4
 			-- aka a = 26
 			-- or is it just count(nbr)?
+function _init()
+	n = 15
+	healthy = 0
+	g = 1
 			cls(healthy)
 end
 
@@ -62,6 +62,7 @@ function count_neighbors(x,y)
 	end
 	return neighbors / 8
 end
+
 
 -- todo: double check this algorithm
 function _draw()
