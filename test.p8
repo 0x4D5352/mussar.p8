@@ -19,6 +19,7 @@ function _draw()
 	circfill(sint+64, cost, radius, 7)
 	line(0,127,127,127,8)
 	print("cos of t() * y: "..cost)
+	print("sine of t() * y: "..sint+64)
 end
 
 __gfx__

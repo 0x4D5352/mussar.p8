@@ -25,8 +25,12 @@ function _draw()
 	print("char: "..stat(31))
 	print("mx: "..stat(32))
 	print("my: "..stat(33))
-	print("mbs: "..stat(34))
-	print("mw: "..stat(36))
+	-- 1 == left mouse
+	-- 2 == right mouse
+	-- 3 == middle mouse
+	print("mb1-3: "..stat(34))
+	print("mwh: "..stat(35))
+	print("mwv: "..stat(36))
 	pset(stat(32),stat(33),7)
 	local res = ""
 	if #string>=1 then
