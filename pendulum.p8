@@ -34,9 +34,9 @@ function _update()
 	if rnd() > 0.5 and party then
 		clr = rndcolor()
 	end
-	if btnp('4') and party == false then 
+	if btnp(❎) and party == false then 
 		party = true 
-	else if btnp('4') and party == true then 
+	else if btnp(❎) and party == true then 
 		party = false 
 	end
 	end
