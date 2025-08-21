@@ -6,13 +6,45 @@ function _init()
 	bg=0
 	txt=6
 	--main button
-	mb = {ul={x=64,y=64},br={x=64,y=64},c=bg+3}
+	mb = {
+		ul = {
+			x=64,
+			y=64
+		}, br = {
+			x=64,
+			y=64
+		}, c = bg + 3
+	}
 	-- shop
-	s = {ul={x=2,y=124},br={x=4,y=126},c=bg+4}
+	s = {
+		ul = {
+			x = 2,
+			y = 124
+		},br = {
+			x = 4,
+			y = 126
+		}, c = bg + 4
+	}
  -- z button - size
-	z = {ul={x=11,y=124},br={x=13,y=126},c=bg+5}
+	z = {
+		ul = {
+			x = 11,
+			y = 124
+		}, br = {
+			x = 13,
+			y = 126
+		}, c = bg + 5
+	}
 	-- d button - cooldown!
-	d = {ul={x=20,y=124},br={x=22,y=126},c=bg+6}
+	d = {
+		ul = {
+			x = 20,
+			y = 124
+		},br = {
+			x = 22,
+			y = 126
+		},c = bg + 6
+	}
 	clix=0
 	cooldown=false
 	last = t()
@@ -41,7 +73,7 @@ function _draw()
 	drawbuttons()
 	showstats()
 	-- todo: fix the scaling
-	print("❎",61,58-bs.n^0.5,txt)
+	print("❎",61,58-bs.n^0.33,txt)
 	if (shopopen) print("🅾️",0,118,txt)
 	if ac.n > 0 then
 		print(ac.n,2,111,txt)
