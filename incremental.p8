@@ -45,10 +45,10 @@ function _init()
 			y = 126
 		},c = bg + 6
 	}
-	clix=0
+	clix=120
 	cooldown=false
 	last = t()
-	refreshrate = 6
+	refreshrate = 1
 	debug = false
 	shopopen = false
 	sizeopen = false
